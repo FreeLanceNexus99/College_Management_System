@@ -58,7 +58,7 @@ This is a **Django-based College Management System** that provides role-based ac
 
 ## 🏗️ Contributing
 1. **Fork the repository** & clone it locally.
-2. **Create a feature branch** (`feature-branch-name`).
+2. **Create a feature branch** (`feature/branch-name`).
 3. **Commit your changes** & push the branch.
 4. **Submit a pull request** to the `develop` branch.
 
