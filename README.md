@@ -21,8 +21,7 @@ This is a **Django-based College Management System** that provides role-based ac
 ## 📂 Installation & Setup
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/YOUR_ORG/YOUR_REPO.git
-   cd YOUR_REPO
+   git clone https://github.com/FreeLanceNexus99/College_Management_System.git
    ```
 2. **Create a virtual environment and activate it**
    ```bash
@@ -34,10 +33,13 @@ This is a **Django-based College Management System** that provides role-based ac
    pip install -r requirements.txt
    ```
 4. **Apply database migrations**
+    ```bash
+   python manage.py makemigrations
+   ```
    ```bash
    python manage.py migrate
    ```
-5. **Run the server**
+6. **Run the server**
    ```bash
    python manage.py runserver
    ```
@@ -58,7 +60,7 @@ This is a **Django-based College Management System** that provides role-based ac
 
 ## 🏗️ Contributing
 1. **Fork the repository** & clone it locally.
-2. **Create a feature branch** (`feature-branch-name`).
+2. **Create a feature branch** (`feature/branch-name`).
 3. **Commit your changes** & push the branch.
 4. **Submit a pull request** to the `develop` branch.
 
