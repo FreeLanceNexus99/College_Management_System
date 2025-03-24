@@ -21,7 +21,7 @@ This is a **Django-based College Management System** that provides role-based ac
 ## 📂 Installation & Setup
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/YOUR_ORG/YOUR_REPO.git](https://github.com/FreeLanceNexus99/College_Management_System.git
+   git clone https://github.com/FreeLanceNexus99/College_Management_System.git
    ```
 2. **Create a virtual environment and activate it**
    ```bash
