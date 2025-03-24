@@ -23,10 +23,13 @@ db.sqlite3
 *.pot
 *.pyc
 migrations/*
+# Django database (if using SQLite)
 
-# Ignore Django settings (if containing secrets)
-settings.py
-settings_local.py
+
+# Django migrations (optional, except the initial migration)
+migrations/
+
+
 
 # Ignore media and static files
 media/
