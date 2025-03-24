@@ -11,6 +11,7 @@ __pycache__/
 # Ignore environment files
 .env
 *.venv/
+colenv/
 venv/
 env/
 pip-log.txt
@@ -24,6 +25,7 @@ db.sqlite3
 *.pyc
 migrations/*
 # Django database (if using SQLite)
+#eib
 
 
 # Django migrations (optional, except the initial migration)
