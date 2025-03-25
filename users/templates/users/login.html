@@ -1,59 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .demo-table {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>College Management System - Login</h1>
-    
-    {% if error %}
-        <p style="color:red;">{{ error }}</p>
-    {% endif %}
-    
-    <form method="POST">
-        {% csrf_token %}
-        <label>Username:</label>
-        <input type="text" name="username" required><br><br>
-        
-        <label>Password:</label>
-        <input type="password" name="password" required><br><br>
-        
-        <button type="submit">Login</button>
-    </form>
+    <div class="container">
+        <div class="login-container">
+            <h2 class="text-center">College Management System - Login</h2>
+            
+            {% if error %}
+                <div class="alert alert-danger text-center">{{ error }}</div>
+            {% endif %}
+            
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Username:</label>
+                    <input type="text" class="form-control" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password:</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+        </div>
 
-    <h2>Demo Credentials</h2>
-    <table border="1">
-        <tr>
-            <th>Role</th>
-            <th>Username</th>
-            <th>Password</th>
-        </tr>
-        <tr>
-            <td>College Admin</td>
-            <td>admin</td>
-            <td>admin123</td>
-        </tr>
-        <tr>
-            <td>Teacher</td>
-            <td>teacher</td>
-            <td>teacher123</td>
-        </tr>
-        <tr>
-            <td>Student</td>
-            <td>student</td>
-            <td>student123</td>
-        </tr>
-        <tr>
-            <td>Librarian</td>
-            <td>librarian</td>
-            <td>library123</td>
-        </tr>
-        <tr>
-            <td>Accountant</td>
-            <td>accountant</td>
-            <td>accountant123</td>
-        </tr>
-    </table>
-    
+        <h3 class="text-center mt-4">Demo Credentials</h3>
+        <table class="table table-bordered table-striped demo-table text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Role</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>College Admin</td><td>admin</td><td>admin123</td></tr>
+                <tr><td>Teacher</td><td>teacher</td><td>teacher123</td></tr>
+                <tr><td>Student</td><td>student</td><td>student123</td></tr>
+                <tr><td>Librarian</td><td>librarian</td><td>library123</td></tr>
+                <tr><td>Accountant</td><td>accountant</td><td>accountant123</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
