@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
+from django.urls import reverse
+
 
 # Temporary Credentials for Each Role
 USER_CREDENTIALS = {
@@ -32,6 +34,7 @@ def user_login(request):
 
     return render(request, 'users/login.html')
 
+
 def user_logout(request):
-    logout(request)
-    return redirect('users:login')
+    logout(request)  # Logs out the user
+    return redirect('users:login') 
