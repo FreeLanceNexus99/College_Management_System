@@ -1,6 +1,7 @@
   
 # Virtual environment folder
 venv/
+env/
 
 
 # Ignore Python bytecode files
