@@ -10,6 +10,7 @@ USER_CREDENTIALS = {
     "student": {"username": "student", "password": "student123"},
     "librarian": {"username": "librarian", "password": "library123"},
     "accountant": {"username": "accountant", "password": "accountant123"},
+    "department":{'username':'hod','password':'hod123'}
 }
 
 def user_login(request):
@@ -29,6 +30,8 @@ def user_login(request):
                     return redirect('library:dashboard')
                 elif role == "accountant":
                     return redirect('accountant:dashboard')
+                elif role == "department":
+                    return redirect('department:dashboard')
 
         return render(request, 'users/login.html', {'error': 'Invalid Credentials'})
 
