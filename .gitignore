@@ -1,6 +1,7 @@
-  
+elearn
 # Virtual environment folder
 venv/
+env/
 
 
 # Ignore Python bytecode files
@@ -11,6 +12,7 @@ __pycache__/
 # Ignore environment files
 .env
 *.venv/
+colenv/
 venv/
 env/
 pip-log.txt
@@ -24,10 +26,8 @@ db.sqlite3
 *.pyc
 migrations/*
 
-# Ignore Django settings (if containing secrets)
-settings.py
-settings_local.py
-
+# Django migrations (optional, except the initial migration)
+migrations/
 # Ignore media and static files
 media/
 staticfiles/
