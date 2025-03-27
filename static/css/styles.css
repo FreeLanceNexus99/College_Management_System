@@ -33,8 +33,6 @@ body {
 
 
 /* dashboard css */
-
-
 /* Sidebar */
 .sidebar {
     width: 220px;
@@ -42,6 +40,7 @@ body {
     background: #062248;
     color: #fff;
     position: fixed;
+    font-weight: bold; 
     top: 0;
     left: 0;
     padding-top: 10px;
@@ -50,7 +49,7 @@ body {
 }
 .sidebar .logo {
     text-align: center;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
     padding: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -72,7 +71,7 @@ body {
     background: #0c3d6d;
 }
 .sidebar ul li i {
-    font-size: 8px;
+    font-size: 10px;
     color: yellow;
 }
 .sidebar-section {
@@ -93,6 +92,8 @@ body {
 .sidebar-section i:first-child {
     color: yellow; /* Yellow */
 }
+
+
 
 
 /* Header */
