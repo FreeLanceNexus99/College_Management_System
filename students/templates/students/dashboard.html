@@ -2,53 +2,186 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap & FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         body {
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: #062248;
             color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 10px;
+            overflow-y: auto;
+            font-size: 14px;
         }
-        .dashboard-container {
-            max-width: 500px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 30px;
-            border-radius: 15px;
+        .sidebar .logo {
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-        .dashboard-container h1 {
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .dashboard-container p {
             font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .logout-btn {
-            background: #ff6b6b;
-            color: white;
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar ul li {
+            padding: 8px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .sidebar ul li:hover {
+            background: #0c3d6d;
+        }
+        .sidebar ul li i {
+            font-size: 8px;
+            color: yellow;
+        }
+        .sidebar-section {
+            padding: 5px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #bbb;
+            margin-top: 10px;
+        }
+
+        /* Header */
+        .header {
+            background: #ffffff;
             padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 220px;
+            width: calc(100% - 220px);
+            height: 60px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .logout-btn:hover {
-            background: #ff4f4f;
+        .search-bar {
+            width: 280px;
+            border-radius: 20px;
+            padding: 5px 15px;
+            border: 1px solid #ccc;
+        }
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .header-icons i {
+            font-size: 16px;
+            cursor: pointer;
+            color: #333;
+        }
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .user-profile img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        /* Content */
+        .content {
+            margin-left: 220px;
+            margin-top: 70px;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="dashboard-container">
-        <h1>Welcome, Student!</h1>
-        <p>You can view your courses, assignments, and grades.</p>
-        <a href="/auth/logout/" class="logout-btn">Logout</a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">Akkhor™</div>
+
+        <div class="sidebar-section">Main Menu</div>
+        <ul class="nav flex-column">
+            <li><i class="fa-solid fa-chart-line"></i> Dashboard</li>
+        </ul>
+
+        <div class="sidebar-section">My Profile</div>
+        <ul class="nav flex-column">
+            <li><i class="fa-solid fa-user"></i> View Profile</li>
+            <li><i class="fa-solid fa-user-edit"></i> Edit Profile</li>
+        </ul>
+
+        <div class="sidebar-section">Academics</div>
+        <ul class="nav flex-column">
+            <li><i class="fa-solid fa-book"></i> My Subjects</li>
+            <li><i class="fa-solid fa-calendar-alt"></i> Class Schedule</li>
+            <li><i class="fa-solid fa-user-check"></i> Attendance</li>
+        </ul>
+
+        <div class="sidebar-section">Exams & Results</div>
+        <ul class="nav flex-column">
+            <li><i class="fa-solid fa-clipboard-list"></i> Exam Schedule</li>
+            <li><i class="fa-solid fa-file-alt"></i> Results</li>
+        </ul>
+
+        <div class="sidebar-section">Others</div>
+        <ul class="nav flex-column">
+            <li><i class="fa-solid fa-bus"></i> Transport</li>
+            <li><i class="fa-solid fa-bed"></i> Hostel</li>
+            <li><i class="fa-solid fa-envelope"></i> Messages</li>
+            <li><i class="fa-solid fa-bell"></i> Notices</li>
+        </ul>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <strong>Welcome, Student</strong>
+        </div>
+
+        <div class="header-center">
+            <input type="text" class="search-bar" placeholder="Search Here...">
+            <i class="fa fa-search"></i>
+        </div>
+
+        <div class="header-icons">
+            <i class="fa-solid fa-globe"></i> English
+            <i class="fa-solid fa-envelope"></i> <span class="badge bg-primary">3</span>
+            <i class="fa-solid fa-bell"></i> <span class="badge bg-warning">5</span>
+
+            <div class="user-profile">
+                <img src="https://via.placeholder.com/30" alt="User">
+                <span>John Doe <br> <small>Student</small></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="content">
+        <h2>Student Dashboard</h2>
+        <p>Welcome to your student dashboard. Here you can check your subjects, class schedule, attendance, and more.</p>
+    </div>
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
