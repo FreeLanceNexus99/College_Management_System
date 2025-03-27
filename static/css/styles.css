@@ -1,0 +1,144 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+
+}
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+.form-section {
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom: 3px solid #001f3f;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+.btn-save {
+    background-color: #ffc107;
+    color: black;
+    font-weight: bold;
+    width: 120px;
+}
+.btn-reset {
+    background-color: #001f3f;
+    color: white;
+    font-weight: bold;
+    width: 120px;
+}
+
+
+
+/* dashboard css */
+
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #062248;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+}
+.sidebar .logo {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar ul li {
+    padding: 8px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.sidebar ul li:hover {
+    background: #0c3d6d;
+}
+.sidebar ul li i {
+    font-size: 8px;
+    color: yellow;
+}
+.sidebar-section {
+    padding: 5px 15px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #bbb;
+    margin-top: 10px;
+}
+.sidebar a {
+   text-decoration: none; /* Removes underline */
+    color: white; /* Sets text color to white */
+    display: block; /* Makes the links take the full width */
+    padding: 3px 8px;
+    transition: 0.3s;
+}
+/* Make Student and Teacher dropdown icons yellow */
+.sidebar-section i:first-child {
+    color: yellow; /* Yellow */
+}
+
+
+/* Header */
+.header {
+    background: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 220px;
+    width: calc(100% - 220px);
+    height: 60px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+.search-bar {
+    width: 280px;
+    border-radius: 20px;
+    padding: 5px 15px;
+    border: 1px solid #ccc;
+}
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.header-icons i {
+    font-size: 16px;
+    cursor: pointer;
+    color: #333;
+}
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.user-profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+/* Content */
+.content {
+    margin-left: 220px;
+    margin-top: 70px;
+    padding: 20px;
+}

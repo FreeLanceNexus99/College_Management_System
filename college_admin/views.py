@@ -35,7 +35,7 @@ def add_student(request):
             return redirect("add_student")
 
         if len(admission_no) != 4 or not admission_no.isdigit():
-            message.error(request, "Admission number must be exactly 4 digits.")
+            messages.error(request, "Admission number must be exactly 4 digits.")
             return redirect('add_student')
 
         if Student.objects.filter(admission_no=admission_no).exists():
