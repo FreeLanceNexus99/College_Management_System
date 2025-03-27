@@ -69,7 +69,11 @@
             <li><i class="fa-solid fa-bed"></i> Hostel</li>
             <li><i class="fa-solid fa-envelope"></i> Messages</li>
             <li><i class="fa-solid fa-bell"></i> Notices</li>
-            <li><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+            <li>
+                <a href="{% url 'college_admin:logout' %}">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </li>
         </ul>
     </div>
 

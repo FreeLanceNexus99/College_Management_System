@@ -1,11 +1,15 @@
 # college_admin/views.py
 from django.shortcuts import render,redirect
 from django.contrib import messages
+from django.contrib.auth import logout, login
 from college_admin.models import Department, Student
 
 def admin_dashboard(request):
     departments = Department.objects.all()
     return render(request, 'college_admin/dashboard.html', {'departments': departments})
+
+def user_logout(request):
+    return redirect('users:login') 
 
 def add_department(request):
     if request.method=='POST':
