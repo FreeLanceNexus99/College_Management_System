@@ -5,7 +5,6 @@ from college_admin.models import Department, Student
 
 def admin_dashboard(request):
     departments = Department.objects.all()
-
     return render(request, 'college_admin/dashboard.html', {'departments': departments})
 
 def add_department(request):
@@ -63,7 +62,7 @@ def add_student(request):
         
         messages.success(request, 'Student added successfully!')
         return redirect('college_admin:add_student')
-
-    
     departments = Department.objects.all()
     return render(request, 'college_admin/dashboard.html', {'departments': departments})
+
+
