@@ -55,33 +55,44 @@
                 <span class="navbar-brand">College Admin Panel</span>
             </div>
         </nav>
+        
         <div class="container mt-4">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card text-white bg-primary mb-3">
-                        <div class="card-header">Students</div>
-                        <div class="card-body">
-                            <h5 class="card-title">1500</h5>
-                        </div>
-                    </div>
+            <h2>Manage Departments</h2>
+            
+            <!-- Form to Add Department -->
+            <form action="{% url 'college_admin:add_department' %}" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="department_name" class="form-label">Department Name</label>
+                    <input type="text" class="form-control" id="department_name" name="department_name" required>
                 </div>
-                <div class="col-md-4">
-                    <div class="card text-white bg-success mb-3">
-                        <div class="card-header">Teachers</div>
-                        <div class="card-body">
-                            <h5 class="card-title">120</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card text-white bg-danger mb-3">
-                        <div class="card-header">Courses</div>
-                        <div class="card-body">
-                            <h5 class="card-title">50</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <button type="submit" class="btn btn-primary">Add Department</button>
+            </form>
+            
+
+            <!-- Display Departments -->
+            <h3 class="mt-4">Existing Departments</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for department in departments %}
+                        <tr>
+                            <td>{{ department.id }}</td>
+                            <td>{{ department.name }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="2" class="text-muted">No departments added yet.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
         </div>
     </div>
 </body>
