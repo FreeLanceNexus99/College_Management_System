@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import logout, login
 from django.urls import reverse
 from django.contrib.auth.models import User
-from college_admin.models import Student
+from college_admin.models import Student, Staff
 
 
 # Temporary Credentials for Each Role
@@ -72,3 +72,18 @@ def student_login(request):
 def student_logout(request):
     logout(request)
     return redirect("users:student_login")
+
+def staff_login(request):
+    if request.method == 'POST':
+        staff_id = request.POST.get('staff_id')
+        dob = request.POST.get('dob')
+
+        try:
+            staff = Staff.objects.get(staff_id=staff_id, dob=dob)
+        except Staff.DoesNotExist:
+            messages.error(request, "Invalid Credentials")
+            return redirect('users:staff_login')
+
+        return redirect('teachers:dashboard')
+    
+    return render(request, 'users/staff_login.html')
