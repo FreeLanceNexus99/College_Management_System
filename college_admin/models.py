@@ -22,6 +22,8 @@ class Student(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default="M")
     year_of_joining = models.PositiveIntegerField()
+    college = models.ForeignKey(College, on_delete=models.CASCADE)
+    password = models.CharField(max_length=255)
 
 class Staff(models.Model):
     name = models.CharField(max_length=255)
@@ -32,3 +34,4 @@ class Staff(models.Model):
     phone_no = models.CharField(max_length=10)
     address = models.TextField()
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    

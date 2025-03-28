@@ -99,10 +99,10 @@ def user_logout(request):
 def student_login(request):
     if request.method == "POST":
         admission_no = request.POST.get('admission_no')
-        dob = request.POST.get('dob')
+        password = request.POST.get('password')
 
         try:
-            student = Student.objects.get(admission_no=admission_no, dob=dob)
+            student = Student.objects.get(admission_no=admission_no, password=password)
             request.session['student_id']=student.id
             request.session['student_name']=student.full_name
 
@@ -111,7 +111,7 @@ def student_login(request):
         
         except Student.DoesNotExist:
             messages.error(request, "Invalid Credentials")
-            return redirect('users:student_login')
+            
 
         # user, created = User.objects.get_or_create(username=student.admission_no, defaults={'first_name': student.full_name})
         # login(request, user)
