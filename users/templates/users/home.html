@@ -30,7 +30,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'users:login' %}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:login' %}">Login using the default login </a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'users:college_register' %}">Register Your College</a></li>
                 </ul>
             </div>
@@ -42,6 +42,7 @@
         <h1>Welcome to the College Management System</h1>
         <p>Manage your college with ease – admissions, staff, students, and library all in one place.</p>
         <a href="{% url 'users:college_register' %}" class="btn btn-light btn-lg"><i class="fas fa-user-plus"></i> Register Your College</a>
+        <a href="{% url 'users:college_login' %}" class="btn btn-light btn-lg"><i class="fas "></i> login Your College</a>
     </div>
 
     <!-- Features Section -->
