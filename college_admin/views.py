@@ -2,7 +2,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth import logout, login
-from college_admin.models import Department, Student
+from college_admin.models import Department, Student, Staff
 
 
 def admin_dashboard(request):
@@ -70,3 +70,52 @@ def add_student(request):
         return redirect('college_admin:add_student')
 
     return render(request, 'college_admin/admit_student.html', {'departments': departments, 'students': students})
+
+def add_staff(request):
+    departments = Department.objects.all()
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        staff_id = request.POST.get('staff_id')
+        dob = request.POST.get('dob')
+        gender = request.POST.get('gender')
+        email = request.POST.get('email')
+        phone_no = request.POST.get('phone_no')
+        address = request.POST.get('address')
+        department_id = request.POST.get('department')
+
+        if not all([name, staff_id, dob, gender, email, phone_no, address, department_id]):
+            messages.error(request, 'All fields are required.')
+            return redirect('college_admin:add_staff')
+
+        if len(staff_id) != 4 or not staff_id.isdigit():
+            messages.error(request, "Staff ID need to be in $ digits.")
+            return redirect('college_admin:add_staff')
+        
+        if Staff.objects.filter(staff_id=staff_id).exists():
+            messages.error(request, "A Staff member with this ID already exists.")
+            return redirect("college_admin:add_staff")
+
+        if not Department.objects.filter(id=department_id).exists():
+            messages.error(request, "invalid department selected.")
+            return redirect("college_admin:add_staff")
+        
+        department = Department.objects.get(id=department_id)
+
+        staff = Staff(
+            name=name,
+            staff_id=staff_id,
+            dob=dob,
+            gender=gender,
+            email=email,
+            phone_no=phone_no,
+            address=address,
+            department=department,
+        )
+        staff.save()
+
+        messages.success(request, "staff member added successfully!")
+        return redirect("college_admin:add_staff")
+
+    departments = Department.objects.all()
+    return render(request, "college_admin/admit_staff.html", {'departments': departments})
