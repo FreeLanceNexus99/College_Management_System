@@ -103,7 +103,13 @@ def student_login(request):
 
         try:
             student = Student.objects.get(admission_no=admission_no, dob=dob)
-        except Student.DoesNot.Exist:
+            request.session['student_id']=student.id
+            request.session['student_name']=student.full_name
+
+            messages.success(request,f'Welcome{student.full_name}!')
+            return redirect('students:dashboard')
+        
+        except Student.DoesNotExist:
             messages.error(request, "Invalid Credentials")
             return redirect('users:student_login')
 
@@ -111,7 +117,7 @@ def student_login(request):
         # login(request, user)
 
         # messages.success(request, f"Welcome {student.full_name}!")
-        return redirect("students:dashboard")
+        
 
     return render(request, 'users/student_login.html')
 
