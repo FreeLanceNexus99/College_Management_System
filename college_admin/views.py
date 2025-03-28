@@ -3,11 +3,23 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth import logout, login
 from college_admin.models import Department, Student, Staff
+from users.models import College
 
 
 def admin_dashboard(request):
+    college_id = request.session.get('college_id')  # Get logged-in college ID from session
+
+    if not college_id:
+        return redirect('users:college_login')  # Redirect to login if no session exists
+
+    try:
+        college = College.objects.get(id=college_id)  # Fetch the specific college
+    except College.DoesNotExist:
+        messages.error(request, "College not found.")
+        return redirect('users:college_login')
+
     departments = Department.objects.all()
-    return render(request, 'college_admin/dashboard.html', {'departments': departments})
+    return render(request, 'college_admin/dashboard.html', {'departments': departments, 'college': college})
 
 def user_logout(request):
     return redirect('users:login') 
