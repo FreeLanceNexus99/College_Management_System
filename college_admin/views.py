@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth import logout, login
 from college_admin.models import Department, Student, Staff
+from django.contrib.auth.hashers import make_password
 from users.models import College
 
 
@@ -57,8 +58,19 @@ def add_department(request):
     return render(request, 'college_admin/add_department.html')  
 
 def add_student(request):
-    students = Student.objects.all()
+
     departments = Department.objects.all()  # Fetch all departments for dropdown
+    college_id = request.session.get('college_id')
+    if not college_id:
+        messages.error(request, "Session expired. Please login in again.")
+        return redirect("users:college_login")
+
+    try:
+        college = College.objects.get(id=college_id)
+    except College.DoesNotExist:
+        messages.error(request, "Session expired. Please log in again.")
+        return redirect("users:college_login")
+
 
     if request.method == 'POST':
         admission_no = request.POST.get('admission_no')
@@ -86,6 +98,12 @@ def add_student(request):
             messages.error(request, "Invalid department selection.")
             return redirect("college_admin:add_student")
 
+        # ✅ Generate password using logged-in admin's college_code
+        raw_password = f"{full_name.split()[0]}@{college.college_code}{admission_no}"
+
+        hashed_password = make_password(raw_password)
+
+
         # ✅ Create and save the student
         student = Student(
             admission_no=admission_no,
@@ -97,13 +115,15 @@ def add_student(request):
             department=department,
             gender=gender,
             year_of_joining=int(year_of_joining),
+            college=college,
+            password=hashed_password,
         )
         student.save()
 
         messages.success(request, 'Student added successfully!')
         return redirect('college_admin:add_student')
 
-    return render(request, 'college_admin/admit_student.html', {'departments': departments, 'students': students})
+    return render(request, 'college_admin/admit_student.html', {'departments': departments})
 
 def add_staff(request):
     departments = Department.objects.all()
