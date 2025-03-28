@@ -18,21 +18,38 @@ def admin_dashboard(request):
         messages.error(request, "College not found.")
         return redirect('users:college_login')
 
-    departments = Department.objects.all()
+    departments = Department.objects.filter(college=college)
+
     return render(request, 'college_admin/dashboard.html', {'departments': departments, 'college': college})
 
 def user_logout(request):
     return redirect('users:login') 
 
 def add_department(request):
-    if request.method=='POST':
-        department_name=request.POST.get('department_name')
-        
+    college_id = request.session.get('college_id')  # ✅ Get the logged-in college ID
+    
+    if not college_id:
+        messages.error(request, "Please log in first.")
+        return redirect('users:college_login')  # ✅ Redirect to login if not authenticated
+
+    try:
+        college = College.objects.get(id=college_id)  # ✅ Fetch the logged-in college
+    except College.DoesNotExist:
+        messages.error(request, "College not found.")
+        return redirect('users:college_login')
+
+    if request.method == 'POST':
+        department_name = request.POST.get('department_name')
+
         if department_name:
-            Department.objects.create(name=department_name)
-        return redirect('college_admin:dashboard')
-        
-    return render(request,'college_admin/add_department.html')    
+            # ✅ Assign department to the logged-in college
+            Department.objects.create(name=department_name, college=college)
+            messages.success(request, "Department added successfully!")
+            return redirect('college_admin:dashboard')  # ✅ Redirect to dashboard
+
+        messages.error(request, "Department name cannot be empty.")
+
+    return render(request, 'college_admin/add_department.html')  
 
 def add_student(request):
     students = Student.objects.all()

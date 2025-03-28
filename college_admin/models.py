@@ -1,10 +1,10 @@
 from django.db import models
 from django.core.validators import MinLengthValidator
+from users.models import College
 
 class Department(models.Model):
     name=models.CharField(max_length=200)
-
-
+    college = models.ForeignKey(College, on_delete=models.CASCADE) 
 
 class Student(models.Model):
 
