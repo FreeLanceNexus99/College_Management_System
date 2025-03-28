@@ -1,8 +1,13 @@
 from django.urls import path
-from .views import admin_dashboard
+from college_admin import views
+
 
 app_name = 'college_admin'
 
 urlpatterns = [
-    path('dashboard/', admin_dashboard, name='dashboard'),
+    path('dashboard/', views.admin_dashboard, name='dashboard'),
+    path("add-department/", views.add_department, name='add_department'),
+    path("add-student/", views.add_student, name="add_student"),
+    path('logout/', views.user_logout, name='logout'),
+    path('add-staff/', views.add_staff, name='add_staff'),
 ]

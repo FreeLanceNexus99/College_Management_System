@@ -26,6 +26,7 @@
     <div class="container">
         <div class="login-container">
             <h2 class="text-center">College Management System - Login</h2>
+           
             
             {% if error %}
                 <div class="alert alert-danger text-center">{{ error }}</div>
@@ -44,6 +45,13 @@
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>
         </div>
+        <a href="{% url 'users:student-login' %}" class="btn btn-secondary w-100 mt-3">
+            Student Login
+        </a>
+        <a href="{% url 'users:college_login' %}" class="btn btn-secondary w-100 mt-3">
+            collage Login
+        </a>
+        
 
         <h3 class="text-center mt-4">Demo Credentials</h3>
         <table class="table table-bordered table-striped demo-table text-center">
@@ -55,11 +63,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>College Admin</td><td>admin</td><td>admin123</td></tr>
                 <tr><td>Teacher</td><td>teacher</td><td>teacher123</td></tr>
-                <tr><td>Student</td><td>student</td><td>student123</td></tr>
                 <tr><td>Librarian</td><td>librarian</td><td>library123</td></tr>
                 <tr><td>Accountant</td><td>accountant</td><td>accountant123</td></tr>
+                <tr><td>Department</td><td>hod</td><td>hod123</td></tr>
             </tbody>
         </table>
     </div>

@@ -1,22 +1,12 @@
 # Create your models here.
 from django.db import models
 
-class CollegeAdmin(models.Model):
-    username = models.CharField(max_length=100, unique=True)
-    password = models.CharField(max_length=100)  # Temporary credentials
 
-class Teacher(models.Model):
-    username = models.CharField(max_length=100, unique=True)
-    password = models.CharField(max_length=100)
+class College(models.Model):
+    full_name = models.CharField(max_length=255, unique=True)
+    college_code = models.CharField(max_length=50, unique=True)
+    email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=15, unique=True)
+    password = models.CharField(max_length=255)
 
-class Student(models.Model):
-    username = models.CharField(max_length=100, unique=True)
-    password = models.CharField(max_length=100)
 
-class Librarian(models.Model):
-    username = models.CharField(max_length=100, unique=True)
-    password = models.CharField(max_length=100)
-
-class Accountant(models.Model):
-    username = models.CharField(max_length=100, unique=True)
-    password = models.CharField(max_length=100)
