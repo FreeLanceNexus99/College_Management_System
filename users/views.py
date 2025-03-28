@@ -37,10 +37,17 @@ def user_login(request):
 
     return render(request, 'users/login.html')
 
+def home(request):
+    return render(request, 'users/home.html')
+
+
+
+def college_register(request):
+    return render(request, 'users/college_register.html')
 
 def user_logout(request):
     logout(request)  # Logs out the user
-    return redirect('users:login') 
+    return redirect('users:home') 
 
 
 def student_login(request):

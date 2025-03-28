@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import logout, login
 from college_admin.models import Department, Student
 
+
 def admin_dashboard(request):
     departments = Department.objects.all()
     return render(request, 'college_admin/dashboard.html', {'departments': departments})
