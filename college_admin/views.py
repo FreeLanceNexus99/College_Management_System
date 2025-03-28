@@ -22,6 +22,11 @@ def admin_dashboard(request):
 
     return render(request, 'college_admin/dashboard.html', {'departments': departments, 'college': college})
 
+def student_list(request):
+    students = Student.objects.all()  # ✅ Fetch students
+    return render(request, 'college_admin/student_list.html', {'students': students})
+
+
 def user_logout(request):
     return redirect('users:login') 
 
