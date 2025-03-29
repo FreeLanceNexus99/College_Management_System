@@ -26,7 +26,20 @@ def admin_dashboard(request):
     return render(request, 'college_admin/dashboard.html', {'departments': departments, 'college': college})
 
 def student_list(request):
-    students = Student.objects.all()  # ✅ Fetch students
+    college_id=request.session.get('college_id')
+    
+    if not college_id:
+        return redirect('users:college_login')
+    
+    try:
+        college=College.objects.get(id=college_id)
+
+    except College.DoesNotExist:
+        messages.error(request,'College not found') 
+        return redirect('users:college_login')   
+    
+       
+    students = Student.objects.filter(college=college)  
     return render(request, 'college_admin/student_list.html', {'students': students})
 
 
