@@ -9,7 +9,7 @@ urlpatterns = [
 
     path('login/', user_login, name='login'),
     path('logout/', user_logout, name='logout'),
-    path('student-login/', student_login, name='student-login'),
+    path('student-login/', student_login, name='student_login'),
     path('staff-login/', staff_login, name='staff_login'),
     
     path('register/', college_register, name='college_register'),
