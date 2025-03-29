@@ -99,7 +99,7 @@ def user_logout(request):
 def student_login(request):
     if request.method == "POST":
         admission_no = request.POST.get('admission_no')
-        password = request.POST.get('password')
+        password = request.POST.get('password').lower()
 
         try:
             student = Student.objects.get(admission_no=admission_no)
