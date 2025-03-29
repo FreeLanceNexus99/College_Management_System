@@ -61,14 +61,32 @@ def add_department(request):
 
     if request.method == 'POST':
         department_name = request.POST.get('department_name')
+        department_code = request.POST.get('department_code')
 
-        if department_name:
-            # ✅ Assign department to the logged-in college
-            Department.objects.create(name=department_name, college=college)
-            messages.success(request, "Department added successfully!")
-            return redirect('college_admin:dashboard')  # ✅ Redirect to dashboard
+        if not all([department_name, department_code]):
+            messages.error(request, "All fields are required.")
+            return redirect('college_admin:add_department')
 
-        messages.error(request, "Department name cannot be empty.")
+        if Department.objects.filter(department_code=department_code, college=college).exists():
+            messages.error(request, "This department code is already registered under your college.")
+            return redirect('college_admin:add_department')
+
+        
+
+        username = department_code
+        password = f"{college.college_code}{department_code}"
+
+        department = Department.objects.create(
+            name=department_name,
+            department_code=department_code,
+            college=college,
+            username=username,
+            password=password,
+        )
+        department.save()
+        
+        messages.success(request, f"Department added successfully! Username: {username}, Password: {password}")
+        return redirect('college_admin:dashboard')
 
     return render(request, 'college_admin/add_department.html')  
 

@@ -5,7 +5,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.urls import reverse
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from college_admin.models import Student, Staff
+from college_admin.models import Student, Staff, Department
 from users.models import College
 
 
@@ -134,3 +134,18 @@ def staff_login(request):
         return redirect('teachers:dashboard')
     
     return render(request, 'users/staff_login.html')
+
+def department_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        try:
+            department = Department.objects.get(username=username, password=password)
+            request.session['department_id'] = department.id  # ✅ Store department ID in session
+            return redirect('department:dashboard')  # ✅ Redirect to department dashboard
+
+        except Department.DoesNotExist:
+            messages.error(request, "Invalid credentials.")
+    
+    return render(request, 'users/department_login.html')

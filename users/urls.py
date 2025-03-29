@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import user_login, user_logout, student_login,home,college_register, staff_login,college_login
+from .views import user_login, user_logout, student_login,home,college_register, staff_login, college_login, department_login
 
 app_name = 'users'
 
@@ -14,6 +14,8 @@ urlpatterns = [
     
     path('register/', college_register, name='college_register'),
     path('college_login/', college_login, name='college_login'),
+
+    path('department_login/', department_login, name='department_login')
 
     
 ]

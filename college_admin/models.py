@@ -4,7 +4,10 @@ from users.models import College
 
 class Department(models.Model):
     name=models.CharField(max_length=200)
-    college = models.ForeignKey(College, on_delete=models.CASCADE) 
+    department_code = models.CharField(max_length=5, unique=True)
+    college = models.ForeignKey(College, on_delete=models.CASCADE)
+    username = models.CharField(max_length=50, unique=True)
+    password = models.CharField(max_length=255) 
 
     def __str__(self):
         return self.name 
@@ -37,4 +40,3 @@ class Staff(models.Model):
     phone_no = models.CharField(max_length=10)
     address = models.TextField()
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
-    
