@@ -5,6 +5,8 @@ from django.contrib.auth import logout, login
 from college_admin.models import Department, Student, Staff
 from django.contrib.auth.hashers import make_password
 from users.models import College
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 def admin_dashboard(request):
@@ -74,7 +76,7 @@ def add_student(request):
 
     if request.method == 'POST':
         admission_no = request.POST.get('admission_no')
-        full_name = request.POST.get('full_name')
+        full_name = request.POST.get('full_name').title()
         dob = request.POST.get('dob')
         address = request.POST.get('address')
         email = request.POST.get('email')
@@ -99,7 +101,7 @@ def add_student(request):
             return redirect("college_admin:add_student")
 
         # ✅ Generate password using logged-in admin's college_code
-        raw_password = f"{full_name.split()[0]}@{college.college_code}{admission_no}"
+        raw_password = f"{full_name.split()[0]}@{college.college_code}{admission_no}".lower()
 
         hashed_password = make_password(raw_password)
 
@@ -119,9 +121,15 @@ def add_student(request):
             password=hashed_password,
         )
         student.save()
+        
+        # ✅ Send email with credentials
+        subject = "Welcome to Your College Portal"
+        message = f"Dear {full_name},\n\nYour Student account has been created.\nLogin credentials:\nAdmission No: {admission_no}\nPassword: {raw_password}\n."
+        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email])
 
-        messages.success(request, 'Student added successfully!')
+        messages.success(request, 'Student added successfully! Login details sent to email.')
         return redirect('college_admin:add_student')
+
 
     return render(request, 'college_admin/admit_student.html', {'departments': departments})
 
