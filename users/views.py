@@ -102,22 +102,17 @@ def student_login(request):
         password = request.POST.get('password')
 
         try:
-            student = Student.objects.get(admission_no=admission_no, password=password)
-            request.session['student_id']=student.id
-            request.session['student_name']=student.full_name
+            student = Student.objects.get(admission_no=admission_no)
+            if check_password(password, student.password):  # ✅ Check hashed password
+                request.session['student_id'] = student.id
+                request.session['student_name'] = student.full_name
 
-            messages.success(request,f'Welcome{student.full_name}!')
-            return redirect('students:dashboard')
-        
+                messages.success(request, f'Welcome {student.full_name}!')
+                return redirect('students:dashboard')
+            else:
+                messages.error(request, "Invalid Credentials")
         except Student.DoesNotExist:
             messages.error(request, "Invalid Credentials")
-            
-
-        # user, created = User.objects.get_or_create(username=student.admission_no, defaults={'first_name': student.full_name})
-        # login(request, user)
-
-        # messages.success(request, f"Welcome {student.full_name}!")
-        
 
     return render(request, 'users/student_login.html')
 
